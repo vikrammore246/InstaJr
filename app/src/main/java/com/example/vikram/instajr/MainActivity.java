@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private NotificationFragment notificationFragment;
     private AccountFragment accountFragment;
+    private AddPostFragment addPostFragment;
 
     private BottomNavigationView mainBottomNav;
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             homeFragment = new HomeFragment();
             notificationFragment = new NotificationFragment();
             accountFragment = new AccountFragment();
+            addPostFragment = new AddPostFragment();
 
             //replaceFragment(homeFragment);
             initializeFragment();
@@ -80,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
 
                         case R.id.bottom_action_account:
                             replaceFragment(accountFragment, currentFragment);
+                            return true;
+
+                        case R.id.bottom_action_add_post:
+                            replaceFragment(addPostFragment, currentFragment);
                             return true;
 
                         default:
@@ -191,9 +197,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.main_container, homeFragment);
         fragmentTransaction.add(R.id.main_container, notificationFragment);
         fragmentTransaction.add(R.id.main_container, accountFragment);
+        fragmentTransaction.add(R.id.main_container, addPostFragment);
 
         fragmentTransaction.hide(notificationFragment);
         fragmentTransaction.hide(accountFragment);
+        fragmentTransaction.hide(addPostFragment);
 
         fragmentTransaction.commit();
 
@@ -206,6 +214,15 @@ public class MainActivity extends AppCompatActivity {
 
             fragmentTransaction.hide(accountFragment);
             fragmentTransaction.hide(notificationFragment);
+            fragmentTransaction.hide(addPostFragment);
+
+        }
+
+        if(fragment == addPostFragment){
+
+            fragmentTransaction.hide(homeFragment);
+            fragmentTransaction.hide(accountFragment);
+            fragmentTransaction.hide(notificationFragment);
 
         }
 
@@ -213,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(notificationFragment);
+            fragmentTransaction.hide(addPostFragment);
 
         }
 
@@ -220,8 +238,10 @@ public class MainActivity extends AppCompatActivity {
 
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(accountFragment);
+            fragmentTransaction.hide(addPostFragment);
 
         }
+
         fragmentTransaction.show(fragment);
 
         //fragmentTransaction.replace(R.id.main_container, fragment);

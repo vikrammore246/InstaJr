@@ -50,7 +50,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="323232" />
+                                                <entry key="color" value="747474" />
                                                 <entry key="paddingPercent" value="20" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
@@ -63,7 +63,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/home/vikram/Downloads/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_send_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/home/vikram/Downloads/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -86,7 +86,7 @@
                                     <map>
                                       <entry key="iconShape" value="NONE" />
                                       <entry key="imageAsset" value="$USER_HOME$/Desktop/rectangle_placeholder.jpg" />
-                                      <entry key="outputName" value="send_icon" />
+                                      <entry key="outputName" value="add_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
