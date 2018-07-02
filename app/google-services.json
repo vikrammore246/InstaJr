@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "760384576493",
+    "firebase_url": "https://instajr-4ea7c.firebaseio.com",
+    "project_id": "instajr-4ea7c",
+    "storage_bucket": "instajr-4ea7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760384576493:android:c4edf31ae3c3c919",
+        "android_client_info": {
+          "package_name": "com.example.vikram.instajr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760384576493-jvrqmgcu6dvnbmkk8l3auk6sot4dt1d0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vikram.instajr",
+            "certificate_hash": "ecdcdb0249cc9242d27f5d196f90321b360e4c53"
+          }
+        },
+        {
+          "client_id": "760384576493-o8rqfcklj7si91k50r2fsjkv5hc8phgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaqTIUvwj9-wSQppSEO4oiKpIx68Vc6Fg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760384576493-o8rqfcklj7si91k50r2fsjkv5hc8phgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
