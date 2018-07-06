@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeFragment homeFragment;
     private NotificationFragment notificationFragment;
-    private AccountFragment accountFragment;
-    private AddPostFragment addPostFragment;
     private SearchFragment searchFragment;
 
     private BottomNavigationView mainBottomNav;
@@ -55,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
             homeFragment = new HomeFragment();
             notificationFragment = new NotificationFragment();
-            accountFragment = new AccountFragment();
-            addPostFragment = new AddPostFragment();
             searchFragment = new SearchFragment();
 
             //replaceFragment(homeFragment);
@@ -148,61 +144,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//
-//        return true;
-//
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        switch (item.getItemId()){
-//
-//            case R.id.action_logout_btn:
-//
-//                logout();
-//
-//                return true;
-//
-//            case R.id.action_settings_btn:
-//                startActivity(new Intent(MainActivity.this, AccountSetupActivity.class));
-//                return true;
-//
-//                default:
-//                    return false;
-//        }
-//
-//
-//    }
-
-    private void logout() {
-
-        mAuth.signOut();
-
-        finish();
-        startActivity(new Intent(MainActivity.this,LoginActivity.class));
-
-
-    }
-
     private void initializeFragment(){
 
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         fragmentTransaction.add(R.id.main_container, homeFragment);
         fragmentTransaction.add(R.id.main_container, notificationFragment);
-        fragmentTransaction.add(R.id.main_container, accountFragment);
-        fragmentTransaction.add(R.id.main_container, addPostFragment);
         fragmentTransaction.add(R.id.main_container, searchFragment);
 
         fragmentTransaction.hide(notificationFragment);
-        fragmentTransaction.hide(accountFragment);
-        fragmentTransaction.hide(addPostFragment);
         fragmentTransaction.hide(searchFragment);
 
         fragmentTransaction.commit();
@@ -214,36 +164,15 @@ public class MainActivity extends AppCompatActivity {
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if(fragment == homeFragment){
 
-            fragmentTransaction.hide(accountFragment);
-            fragmentTransaction.hide(notificationFragment);
-            fragmentTransaction.hide(addPostFragment);
-            fragmentTransaction.hide(searchFragment);
-
-        }
-
-        if(fragment == addPostFragment){
-
-            fragmentTransaction.hide(homeFragment);
-            fragmentTransaction.hide(accountFragment);
             fragmentTransaction.hide(notificationFragment);
             fragmentTransaction.hide(searchFragment);
 
         }
 
-        if(fragment == accountFragment){
-
-            fragmentTransaction.hide(homeFragment);
-            fragmentTransaction.hide(notificationFragment);
-            fragmentTransaction.hide(addPostFragment);
-            fragmentTransaction.hide(searchFragment);
-
-        }
 
         if(fragment == notificationFragment){
 
             fragmentTransaction.hide(homeFragment);
-            fragmentTransaction.hide(accountFragment);
-            fragmentTransaction.hide(addPostFragment);
             fragmentTransaction.hide(searchFragment);
 
         }
@@ -251,8 +180,6 @@ public class MainActivity extends AppCompatActivity {
         if(fragment == searchFragment){
 
             fragmentTransaction.hide(homeFragment);
-            fragmentTransaction.hide(accountFragment);
-            fragmentTransaction.hide(addPostFragment);
             fragmentTransaction.hide(notificationFragment);
 
         }
