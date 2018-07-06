@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -70,10 +71,8 @@ public class NewPostActivity extends AppCompatActivity {
 
         currentUserId = firebaseAuth.getCurrentUser().getUid();
 
-        newPostToolbar = findViewById(R.id.post_act_toolbar);
+        newPostToolbar =findViewById(R.id.appBarLayout);
         setSupportActionBar(newPostToolbar);
-        getSupportActionBar().setTitle("Add New Post");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         newPostImage = findViewById(R.id.newPostImageView);
         newPosteDesc = findViewById(R.id.newPostEditText);
@@ -249,6 +248,15 @@ public class NewPostActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(NewPostActivity.this, MainActivity.class));
+        finish();
     }
 
 

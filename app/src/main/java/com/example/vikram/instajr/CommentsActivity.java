@@ -1,6 +1,7 @@
 package com.example.vikram.instajr;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,9 +54,8 @@ public class CommentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
 
-        commentToolbar = findViewById(R.id.comment_activity_toolbar);
+        commentToolbar = findViewById(R.id.appBarLayout);
         setSupportActionBar(commentToolbar);
-        getSupportActionBar().setTitle("Comments");
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();

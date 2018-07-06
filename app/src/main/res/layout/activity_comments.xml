@@ -7,16 +7,13 @@
     tools:context=".CommentsActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/comment_activity_toolbar"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/toolbardes"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_feed_layout" />
     </android.support.v7.widget.Toolbar>
 
 
@@ -30,7 +27,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment_activity_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <EditText
         android:id="@+id/_edit_comment_field"

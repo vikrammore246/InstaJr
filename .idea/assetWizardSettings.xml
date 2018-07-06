@@ -63,7 +63,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/home/vikram/Downloads/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_add_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/home/vikram/Downloads/android-studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_search_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -85,8 +85,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Desktop/rectangle_placeholder.jpg" />
-                                      <entry key="outputName" value="add_icon" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Desktop/tool_logo.png" />
+                                      <entry key="outputName" value="action_serch_gray" />
                                     </map>
                                   </option>
                                 </PersistentState>

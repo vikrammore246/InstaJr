@@ -7,6 +7,10 @@
         android:icon="@drawable/baseline_home_black_18dp"
         android:title="Home" />
     <item
+        android:id="@+id/action_search_gray"
+        android:icon="@mipmap/action_serch_gray"
+        android:title="Search" />
+    <item
         android:id="@+id/bottom_action_add_post"
         android:icon="@mipmap/action_add"
         android:title="Add" />

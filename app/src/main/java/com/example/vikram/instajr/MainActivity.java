@@ -3,11 +3,13 @@ package com.example.vikram.instajr;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,17 +24,17 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
-    private android.support.v7.widget.Toolbar mainToolbar;
+    private Toolbar mainToolbar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
 
-    private FloatingActionButton addPostBtn;
     private String currentUserId;
 
     private HomeFragment homeFragment;
     private NotificationFragment notificationFragment;
     private AccountFragment accountFragment;
     private AddPostFragment addPostFragment;
+    private SearchFragment searchFragment;
 
     private BottomNavigationView mainBottomNav;
 
@@ -41,14 +43,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.main_toolbar);
+        mainToolbar = findViewById(R.id.appBarLayout);
         setSupportActionBar(mainToolbar);
-        getSupportActionBar().setTitle("Insta Jr.");
 
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
-
-        addPostBtn = findViewById(R.id.add_post_btn);
 
         if (mAuth.getCurrentUser() != null) {
 
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             notificationFragment = new NotificationFragment();
             accountFragment = new AccountFragment();
             addPostFragment = new AddPostFragment();
+            searchFragment = new SearchFragment();
 
             //replaceFragment(homeFragment);
             initializeFragment();
@@ -75,17 +75,25 @@ public class MainActivity extends AppCompatActivity {
                             replaceFragment(homeFragment, currentFragment);
                             return true;
 
+                        case R.id.action_search_gray:
+                            replaceFragment(searchFragment, currentFragment);
+                            return true;
+
                         case R.id.bottom_action_notification:
                             replaceFragment(notificationFragment, currentFragment);
                             return true;
 
 
                         case R.id.bottom_action_account:
-                            replaceFragment(accountFragment, currentFragment);
+                            finish();
+                            startActivity(new Intent(MainActivity.this, AccountSetupActivity.class));
+                            //replaceFragment(accountFragment, currentFragment);
                             return true;
 
                         case R.id.bottom_action_add_post:
-                            replaceFragment(addPostFragment, currentFragment);
+                            //replaceFragment(addPostFragment, currentFragment);
+                            finish();
+                            startActivity(new Intent(MainActivity.this, NewPostActivity.class));
                             return true;
 
                         default:
@@ -93,14 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                }
-            });
-
-
-            addPostBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(MainActivity.this, NewPostActivity.class));
                 }
             });
 
@@ -149,36 +149,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-
-        return true;
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-
-            case R.id.action_logout_btn:
-
-                logout();
-
-                return true;
-
-            case R.id.action_settings_btn:
-                startActivity(new Intent(MainActivity.this, AccountSetupActivity.class));
-                return true;
-
-                default:
-                    return false;
-        }
-
-
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//
+//        getMenuInflater().inflate(R.menu.main_menu, menu);
+//
+//        return true;
+//
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId()){
+//
+//            case R.id.action_logout_btn:
+//
+//                logout();
+//
+//                return true;
+//
+//            case R.id.action_settings_btn:
+//                startActivity(new Intent(MainActivity.this, AccountSetupActivity.class));
+//                return true;
+//
+//                default:
+//                    return false;
+//        }
+//
+//
+//    }
 
     private void logout() {
 
@@ -198,10 +198,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.main_container, notificationFragment);
         fragmentTransaction.add(R.id.main_container, accountFragment);
         fragmentTransaction.add(R.id.main_container, addPostFragment);
+        fragmentTransaction.add(R.id.main_container, searchFragment);
 
         fragmentTransaction.hide(notificationFragment);
         fragmentTransaction.hide(accountFragment);
         fragmentTransaction.hide(addPostFragment);
+        fragmentTransaction.hide(searchFragment);
 
         fragmentTransaction.commit();
 
@@ -215,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.hide(accountFragment);
             fragmentTransaction.hide(notificationFragment);
             fragmentTransaction.hide(addPostFragment);
+            fragmentTransaction.hide(searchFragment);
 
         }
 
@@ -223,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(accountFragment);
             fragmentTransaction.hide(notificationFragment);
+            fragmentTransaction.hide(searchFragment);
 
         }
 
@@ -231,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(notificationFragment);
             fragmentTransaction.hide(addPostFragment);
+            fragmentTransaction.hide(searchFragment);
 
         }
 
@@ -239,6 +244,16 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.hide(accountFragment);
             fragmentTransaction.hide(addPostFragment);
+            fragmentTransaction.hide(searchFragment);
+
+        }
+
+        if(fragment == searchFragment){
+
+            fragmentTransaction.hide(homeFragment);
+            fragmentTransaction.hide(accountFragment);
+            fragmentTransaction.hide(addPostFragment);
+            fragmentTransaction.hide(notificationFragment);
 
         }
 
@@ -248,4 +263,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+
 }

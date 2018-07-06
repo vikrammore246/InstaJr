@@ -10,10 +10,12 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -45,12 +47,13 @@ import id.zelory.compressor.Compressor;
 
 public class AccountSetupActivity extends AppCompatActivity {
 
-    private android.support.v7.widget.Toolbar accToolbar;
+    private Toolbar accToolbar;
     private Uri mainImmageUri = null;
 
     private CircleImageView profileImage;
     private EditText setupName;
     private Button setupBtn;
+    private Button signOutBtn;
     private ProgressBar setupProgress;
 
     private String userId;
@@ -67,9 +70,8 @@ public class AccountSetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_setup);
 
-        accToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.accSetup_toolbar);
+        accToolbar = findViewById(R.id.appBarLayout);
         setSupportActionBar(accToolbar);
-        getSupportActionBar().setTitle("Setup Your Account");
 
         firebaseAuth = FirebaseAuth.getInstance();
         userId = firebaseAuth.getCurrentUser().getUid();
@@ -81,6 +83,7 @@ public class AccountSetupActivity extends AppCompatActivity {
         setupName = (EditText)findViewById(R.id.setupName);
         setupBtn = (Button)findViewById(R.id.setupBtn);
         setupProgress = findViewById(R.id.setupPageProgress);
+        signOutBtn = findViewById(R.id.btnSignOut);
 
         Drawable progressDrawable = setupProgress.getProgressDrawable().mutate();
         progressDrawable.setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.SRC_IN);
@@ -223,6 +226,15 @@ public class AccountSetupActivity extends AppCompatActivity {
             }
         });
 
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                logout();
+
+            }
+        });
+
     }
 
     private void StoreFirestore(@NonNull Task<UploadTask.TaskSnapshot> task, String userName) {
@@ -294,5 +306,24 @@ public class AccountSetupActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void logout() {
+
+        firebaseAuth.signOut();
+
+        finish();
+        startActivity(new Intent(AccountSetupActivity.this,LoginActivity.class));
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finish();
+        startActivity(new Intent(AccountSetupActivity.this, MainActivity.class));
     }
 }
